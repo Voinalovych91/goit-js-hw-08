@@ -14,11 +14,17 @@ let savedItems = JSON.parse(localStorage.getItem(keyValue)) || {
 function handleInput(event) {
   savedItems[event.target.name] = event.target.value;
 
+
   localStorage.setItem(keyValue, JSON.stringify(savedItems));
 }
 
 function handleSubmit(event) {
   event.preventDefault();
+
+  if (!event.target.email.value  || !event.target.message.value) {
+    alert('Заповніть усі поля форми');
+    return;        
+}
 
   const saveData = localStorage.getItem(keyValue);
   console.log(JSON.parse(saveData));
